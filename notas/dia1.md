@@ -103,3 +103,24 @@ Con react vamos a a crear componentes web.... que querremos comunicar entre si!
         |   props   función             |                  REDUX 
         |   v         ^                 |
         |- Componente B                 |
+
+# npm
+
+Herramienta que me permite automatizar tareas repetitivas de mi proyecto:
+- Descarga de dependencias
+- compile
+- test
+- package
+- sonar:sonar
+Tiene su fichero de configuración en cada proyecto.
+
+# maven
+
+Trabaja contra un repo local a nivel del host: Carpeta .m2
+Herramienta que me permite automatizar tareas repetitivas de mi proyecto:
+- Descarga de dependencias
+- compile
+- test
+- package
+- sonar:sonar
+Tiene su fichero de configuración en cada proyecto.
