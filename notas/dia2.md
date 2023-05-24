@@ -106,3 +106,28 @@ class ListadoUsuarios{
         </div>);
     }
 }
+
+
+// 
+
+Sistema de gestión de solicitudes de vacaciones
+
+    FRONTEND                                                        BACKEND
+                                                                    http://servidor:8080/api/v3/vacaciones/19284372/solicitante
+       Pantalla                                                         {
+          <Usuario id="19284372">                                           "id": 1209347827,
+                                                                            "name": "Ivan",
+                                                                            "lastName": "osuna",
+                                                                            "age": 44
+                                                                        }
+
+    proyecto
+        src
+            componentes
+                usuario.js
+                    import ServicioUsuarios from ../servicios/ServicioUsuarios
+            servicios
+                ServicioUsuariosV2.js
+                    llamada al api: http://servidor:8080/api/v2/vacaciones/19284372/solicitante
+                ServicioUsuariosV3.js
+                    llamada al api: http://servidor:8080/api/v2/vacaciones/19284372/solicitante                    
