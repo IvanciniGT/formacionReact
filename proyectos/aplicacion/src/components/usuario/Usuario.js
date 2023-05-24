@@ -79,7 +79,7 @@ class Usuario extends React.Component {
   }
   confirmarBorrado(){
     this.setState( this.state.setEstadoNormal() )         // Cambio mi estado
-    this.notificarEvento(this.props.onBorrado)                    // Lanzo el evento
+    this.notificarEvento(this.props.onBorradoConfirmado)                    // Lanzo el evento
   }
   notificarEvento(funcionDeNotificacion){
     funcionDeNotificacion && funcionDeNotificacion(this.props.id)
@@ -91,8 +91,8 @@ class Usuario extends React.Component {
   render() {
     return !this.state.data? this.renderizarCargando() :(
         <div 
-            className={`usuario ${ this.state.estaSeleccionado() && "seleccionado"}`}
-            onClick={ this.toogleSelecionado().bind(this) } >
+            className={`usuario ${ this.state.estaSeleccionado() ? "seleccionado" : ""} ${ this.state.estaCompacto() ? "compacto" : "extendido" }`}
+            onClick={ this.toogleSelecionado.bind(this) } >
             { this.renderizarAvatar() }
             { this.renderizarBotones() }
             { this.renderizarCambioModoVisualizacion() }
@@ -120,8 +120,10 @@ class Usuario extends React.Component {
               <div className="datos">
                 <div><span>Nombre:</span> {this.state.data.nombre} </div>
                 <div><span>Apellidos:</span> {this.state.data.apellidos} </div>
-                <div><span>Edad:</span> {this.state.data.edad} </div>
-              </div>
+                { this.state.estaExtendido() && 
+                  <div><span>Edad:</span> {this.state.data.edad} </div>
+                }
+                </div>
            )
   }
   renderizarCambioModoVisualizacion(){
@@ -157,7 +159,7 @@ class Usuario extends React.Component {
 
   renderizarAvatar(){
     return ( <div className="avatar">
-                <img src={`http://servidor/usuarios/{$this.props.id}/pic`}/>
+                <img alt="foto-pringao" src={`http://servidor/usuarios/{$this.props.id}/pic`}/>
              </div> )
   }
 }
@@ -179,7 +181,7 @@ Usuario.propTypes = {
 }
 Usuario.defaultProps={
   modoDeVisualizacion: "EXTENDIDO",
-    seleccionado: false,
+  seleccionado: false,
 }
 
 export default Usuario;

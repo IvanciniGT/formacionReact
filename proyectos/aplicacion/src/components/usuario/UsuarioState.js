@@ -16,55 +16,55 @@ class UsuarioState {
         this.seleccionado = props.seleccionado              // Para REPINTAR si cambia el seleccionado
     }
 
-    setData(data){
+    setData=(data)=>{
         this.data=data
         return this;
     }
-    alternarExtendido(){
+    alternarExtendido=()=>{
         if (this.props.modoDeVisualizacion === "EXTENSIBLE")
             this.extendido = !this.extendido;
         return this;
     }
-    estaExtendido(){
+    estaExtendido=()=>{
         return this.extendido;
     }
-    estaCompacto(){
+    estaCompacto=()=>{
         return ! this.extendido;
     }
-    setEstadoNormal(){
+    setEstadoNormal=()=>{
         this.estado=UsuarioState.Estado.NORMAL
         return this;
     }
-    setEstadoBorrado(){
+    setEstadoBorrado=()=>{
         this.estado=UsuarioState.Estado.EN_BORRADO
         return this;
     }
-    setEstadoModificacion(){
+    setEstadoModificacion=()=>{
         this.estado=UsuarioState.Estado.EN_MODIFICACION
         this.modo = "NORMAL"    // Logica
         return this;
     }
 
 
-    estaEnEstadoNormal(){
+    estaEnEstadoNormal=()=>{
         return this.estado===UsuarioState.Estado.NORMAL
     }
-    estaEnEstadoBorrado(){
+    estaEnEstadoBorrado=()=>{
         return this.estado===UsuarioState.Estado.EN_BORRADO
     }
-    estaEnEstadoModificacion(){
+    estaEnEstadoModificacion=()=>{
         return this.estado===UsuarioState.Estado.EN_MODIFICACION
     }
 
-    setSeleccionado(seleccionado=true){
+    setSeleccionado=(seleccionado=true)=>{
         this.seleccionado=seleccionado
         return this;
     }
-    alternarSeleccionado(){
+    alternarSeleccionado=()=>{
         this.seleccionado= ! this.seleccionado
         return this
     }
-    estaSeleccionado(){
+    estaSeleccionado=()=>{
         return this.seleccionado
     }
 }
