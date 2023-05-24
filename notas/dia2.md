@@ -2,6 +2,30 @@
 # Componente Usuario
 
 <listado-usuario datos="???"/> -> servicio que da usuarios a tocomocho !!!
+        datos???
+        paginacion x
+        borrables=?
+        modificables=[]
+        seleccionables=?
+        modo={ NORMAL | EXTENSIBLE | COMPACTO } 
+
+
+    Los usuarios son borrables
+        - A cada usuario se le indica que es borrable... siempre?   
+          Si estoy borrando alguno de los usaurios el boton de borrar del resto: Desaparecer 
+    y los usuarios son modificables
+        - A cada usuario se le indica que es modificable... siempre?   
+          Si estoy modificando alguno de los usaurios el boton de modificar del resto: Desaparecer 
+          Si estoy borrando alguno de los usaurios el boton de modificar del resto: Desaparecer 
+    Y cómo se si se esta modificando otro usuario o borrando? 
+    - Como yo listado!!!!! me enteraría de que algun usuario (hijo imo) está siendo modificado?
+      - BIEN FACIL !!!Gracias a que mi hiijo (usuario) cortesmente me avisa a la funcion que le paso en: onModificacion
+
+    Que datos he de guardar a nivel de estado del componente listado-usuarios?
+        - datos de los usuarios
+        - si alguno está en modificacion
+        - si alguno está en borrado
+
 
 # Componente Usuario
 
@@ -131,3 +155,50 @@ Sistema de gestión de solicitudes de vacaciones
                     llamada al api: http://servidor:8080/api/v2/vacaciones/19284372/solicitante
                 ServicioUsuariosV3.js
                     llamada al api: http://servidor:8080/api/v2/vacaciones/19284372/solicitante                    
+
+
+
+
+ESTADO 1:
+
+    Ivan            MODIFICAR   BORRAR
+    Menchu          MODIFICAR   BORRAR
+    Felipe          MODIFICAR   BORRAR
+    Patricia        MODIFICAR   BORRAR
+    Antonio         MODIFICAR   BORRAR
+
+ESTADO 2: Tras hacer click en Menchu: BORRAR
+
+    Ivan            
+    Menchu          CONFIRMAR CANCELAR
+    Felipe          
+    Patricia        
+    Antonio         
+
+ESTADO 2 alternativo: Tras hacer click en Menchu: MODIFICAR
+
+    Ivan            
+    Menchu          GUARDAR CANCELAR
+    Felipe          
+    Patricia        
+    Antonio         
+
+
+# Listados en React
+
+ARRAY DE DATOS          DOM     key
+A                   -> div1     A
+B                   -> div2     B           EXTENDIDO
+C                   -> div3     C           COMPRIMIDO
+D                   -> div4     D
+
+
+A                   -> div1
+C                   -> div2         EXTENDIDO
+D                   -> div3
+
+
+A
+B
+D
+C
