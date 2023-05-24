@@ -12,7 +12,7 @@ class Usuario extends React.Component {
 
   constructor(props){
     super(props)
-    this.state = new UsuarioState();
+    this.state = new UsuarioState(props);
   }
 
   componentDidMount(){
@@ -55,31 +55,31 @@ class Usuario extends React.Component {
   toogleSelecionado(){
     this.setState( this.state.alternarSeleccionado() ) 
     // Lanzar los eventos
-    this.state.estaSeleccionado() ? notificarEvento(this.props.onSeleccionado) : notificarEvento(this.props.onDeseleccionado)
+    this.state.estaSeleccionado() ? this.notificarEvento(this.props.onSeleccionado) : this.notificarEvento(this.props.onDeseleccionado)
   }
   iniciarBorrado(){
     this.setState( this.state.setEstadoBorrado() )         // Cambio mi estado
-    notificarEvento(this.props.onBorrado)         // Lanzo el evento
+    this.notificarEvento(this.props.onBorrado)         // Lanzo el evento
   }
   iniciarModificacion(){
     this.setState( this.state.setEstadoModificacion() )         // Cambio mi estado
-    notificarEvento(this.props.onModificacion)    // Lanzo el evento
+    this.notificarEvento(this.props.onModificacion)    // Lanzo el evento
   }
   cancelarModificacion(){
     this.setState( this.state.setEstadoNormal() )         // Cambio mi estado
-    notificarEvento(this.props.onModificacionCancelada)         // Lanzo el evento
+    this.notificarEvento(this.props.onModificacionCancelada)         // Lanzo el evento
   }
   confirmarModificacion(){
     this.setState( this.state.setEstadoNormal() )         // Cambio mi estado
-    notificarEvento(this.props.onModificado)  // Lanzo el evento
+    this.notificarEvento(this.props.onModificado)  // Lanzo el evento
   }
   cancelarBorrado(){
     this.setState( this.state.setEstadoNormal() )         // Cambio mi estado
-    notificarEvento(this.props.onBorradoCancelado)         // Lanzo el evento
+    this.notificarEvento(this.props.onBorradoCancelado)         // Lanzo el evento
   }
   confirmarBorrado(){
     this.setState( this.state.setEstadoNormal() )         // Cambio mi estado
-    notificarEvento(this.props.onBorrado)                    // Lanzo el evento
+    this.notificarEvento(this.props.onBorrado)                    // Lanzo el evento
   }
   notificarEvento(funcionDeNotificacion){
     funcionDeNotificacion && funcionDeNotificacion(this.props.id)
@@ -104,7 +104,7 @@ class Usuario extends React.Component {
     return ( <div className="cargando">Cargando...</div> )
   }
   renderizarDatos(){
-    return this.state.estaEnEstadoModificacion() ? renderizarFormularioDatos() : renderizarVisualizacionDatos()
+    return this.state.estaEnEstadoModificacion() ? this.renderizarFormularioDatos() : this.renderizarVisualizacionDatos()
   }
   renderizarFormularioDatos(){
     return (
@@ -143,13 +143,13 @@ class Usuario extends React.Component {
                     </div> )
     } else if ( this.state.estaEnEstadoModificacion() ){
         botones = ( <div className="botones">
-                        <button onClick={() => cancelarModificacion() }>Cancelar</button>
-                        <button onClick={() => confirmarModificacion() }>Guardar</button>
+                        <button onClick={() => this.cancelarModificacion() }>Cancelar</button>
+                        <button onClick={() => this.confirmarModificacion() }>Guardar</button>
                     </div> )
     } else if ( this.state.estaEnEstadoBorrado() ){
         botones = ( <div className="botones">
-                        <button onClick={() => cancelarBorrado() }>Cancelar</button>
-                        <button onClick={() => confirmarBorrado() }>Confirmar</button>
+                        <button onClick={() => this.cancelarBorrado() }>Cancelar</button>
+                        <button onClick={() => this.confirmarBorrado() }>Confirmar</button>
                     </div> )
     }
     return botones;
