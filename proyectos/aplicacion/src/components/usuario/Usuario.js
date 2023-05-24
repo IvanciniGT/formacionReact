@@ -13,6 +13,19 @@ class Usuario extends React.Component {
   constructor(props){
     super(props)
     this.state = new UsuarioState(props);
+
+    this.campos = {}
+    this.props.datosModificables.forEach( campo => this.campos[campo] = React.createRef() )
+
+    this.recienLlegadoAModificado = false;
+    // React.createRef() => Genero una referencia hacia un objeto del DOM
+    /*
+     {
+      "nombre": referencia1,
+      "apellidos": referencia2
+      ...
+     }
+     */
   }
 
   componentDidMount(){
@@ -62,6 +75,7 @@ class Usuario extends React.Component {
     this.notificarEvento(this.props.onBorrado)         // Lanzo el evento
   }
   iniciarModificacion(){
+    this.recienLlegadoAModificado = true;
     this.setState( this.state.setEstadoModificacion() )         // Cambio mi estado
     this.notificarEvento(this.props.onModificacion)    // Lanzo el evento
   }
@@ -70,7 +84,9 @@ class Usuario extends React.Component {
     this.notificarEvento(this.props.onModificacionCancelada)         // Lanzo el evento
   }
   confirmarModificacion(){
-    this.setState( this.state.setEstadoNormal() )         // Cambio mi estado
+    var nuevosDatos = {... this.state.data }
+    this.props.datosModificables.forEach( campo => nuevosDatos[campo]=this.campos[campo].current.value )
+    this.setState( this.state.setData(nuevosDatos).setEstadoNormal() )         // Cambio mi estado
     this.notificarEvento(this.props.onModificado)  // Lanzo el evento
   }
   cancelarBorrado(){
@@ -109,11 +125,37 @@ class Usuario extends React.Component {
   renderizarFormularioDatos(){
     return (
       <div className="datos">
-        <div><span>Nombre(*):</span> {this.state.data.nombre} </div>
-        <div><span>Apellidos(*):</span> {this.state.data.apellidos} </div>
-        <div><span>Edad(*):</span> {this.state.data.edad} </div>
+        
+        { ! this.props.datosModificables || this.props.datosModificables.includes("nombre") ?
+        <div>
+            <span>Nombre(*):</span>
+            <input type="text" ref={this.campos.nombre} name="nombre" defaultValue={this.state.data.nombre}/> 
+        </div> :
+        <div><span>Nombre(*):</span> {this.state.data.nombre} </div> }
+
+        { ! this.props.datosModificables || this.props.datosModificables.includes("apellidos") ?
+        <div>
+            <span>Apellidos(*):</span> 
+            <input type="text" name="apellidos" ref={this.campos.apellidos} defaultValue={this.state.data.apellidos}/> 
+        </div> :
+        <div><span>Apellidos(*):</span> {this.state.data.apellidos} </div> }
+
+        { ! this.props.datosModificables || this.props.datosModificables.includes("edad") ?
+        <div>
+            <span>Edad(*):</span>
+            <input type="text" name="edad"  ref={this.campos.edad} defaultValue={this.state.data.edad}/>
+        </div> :
+        <div><span>Edad(*):</span> {this.state.data.edad} </div> }
+
       </div>
    )  
+  }
+  componentDidUpdate(){ // Se ejecuta cuando ha sido renderizado
+    //console.log(this.campos)
+    if(this.state.estaEnEstadoModificacion() && this.recienLlegadoAModificado) {
+      this.recienLlegadoAModificado = false
+      this.campos[this.props.datosModificables[0]].current.focus()
+    }
   }
   renderizarVisualizacionDatos(){
     return (
@@ -182,6 +224,7 @@ Usuario.propTypes = {
 Usuario.defaultProps={
   modoDeVisualizacion: "EXTENDIDO",
   seleccionado: false,
+  datosModificables: ["nombre", "apellidos", "edad"]
 }
 
 export default Usuario;
