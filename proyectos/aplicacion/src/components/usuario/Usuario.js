@@ -152,11 +152,14 @@ class Usuario extends React.Component {
       </div>
    )  
   }
-  componentDidUpdate(){ // Se ejecuta cuando ha sido renderizado
+  componentDidUpdate(valoresPreviosPropiedades){ // Se ejecuta cuando ha sido renderizado
     //console.log(this.campos)
     if(this.state.estaEnEstadoModificacion() && this.recienLlegadoAModificado) {
       this.recienLlegadoAModificado = false
       this.campos[this.props.datosModificables[0]].current.focus()
+    }
+    if(valoresPreviosPropiedades.seleccionado !== this.props.seleccionado){
+        this.setState(this.state.setSeleccionado(this.props.seleccionado))
     }
   }
   renderizarVisualizacionDatos(){

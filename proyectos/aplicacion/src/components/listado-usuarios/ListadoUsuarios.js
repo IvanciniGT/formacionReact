@@ -5,7 +5,8 @@ import ListadoUsuariosState from './ListadoUsuariosState';
 import Usuario from '../usuario/Usuario';
 import React from "react";
 import PropTypes from "prop-types";
-import {mostrarSeleccionarTodos, 
+import {estaSeleccionadoElUsuario,
+        mostrarSeleccionarTodos, 
         mostrarDeseleccionarTodos,
         mostrarBorrar,
         mostrarBotonBorrarUsuario,
@@ -35,6 +36,7 @@ class ListadoUsuarios extends React.Component {
     // Actualizar en la lista
     this.setState(this.state.establecerElementoEnModificacion())
   } // ????
+
   render(){
     return (
       <div>
@@ -52,6 +54,7 @@ class ListadoUsuarios extends React.Component {
               key={datosUsuario.id} 
               id={datosUsuario.id} 
               data={datosUsuario}
+              seleccionado={estaSeleccionadoElUsuario(this.state, datosUsuario.id)}
               modoDeVisualizacion={this.props.modo}
               onSeleccionado={()=>this.setState(this.state.seleccionar(datosUsuario.id))}  
               onDeseleccionado={()=>this.setState(this.state.deseleccionar(datosUsuario.id))}
@@ -79,11 +82,11 @@ class ListadoUsuarios extends React.Component {
   renderBotones(){
     return (
       <div className="botones">
-        { mostrarSeleccionarTodos(this.props,this.state) && <button onClick={ this.setState(this.state.seleccionarTodos()) }>Seleccionar todos</button> }
-        { mostrarDeseleccionarTodos(this.props,this.state) && <button onClick={ this.setState(this.state.deseleccionarTodos()) }>Deseleccionar todos</button> }
-        { mostrarBorrar(this.state) && <button onClick={ this.setState(this.state.borradoSolicitadoTodos()) }>Borrar</button> }
+        { mostrarSeleccionarTodos(this.props,this.state) && <button onClick={ ()=>this.setState(this.state.seleccionarTodos()) }>Seleccionar todos</button> }
+        { mostrarDeseleccionarTodos(this.props,this.state) && <button onClick={ ()=>this.setState(this.state.deseleccionarTodos()) }>Deseleccionar todos</button> }
+        { mostrarBorrar(this.props,this.state) && <button onClick={ ()=>this.setState(this.state.borradoSolicitadoTodos()) }>Borrar</button> }
         { this.state.enBorradoTodos && <button onClick={ this.confirmarBorradoTodos.bind(this) }>Confirmar</button> }
-        { this.state.enBorradoTodos && <button onClick={ this.setState(this.state.yaNoEnBorradoTodos()) }>Cancelar</button> }
+        { this.state.enBorradoTodos && <button onClick={ ()=>this.setState(this.state.yaNoEnBorradoTodos()) }>Cancelar</button> }
       </div>
     )
   }

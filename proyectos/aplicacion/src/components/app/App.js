@@ -9,7 +9,7 @@ function App() {
       borrables={true}
       modificables={true}
       seleccionables={true}
-      modo={"EXTENDIDO"}
+      modo={"EXTENSIBLE"}
       />
 
 

@@ -9,7 +9,7 @@ export function algunaOperacionEnMarcha(estado){
 export const mostrarSeleccionarTodos = (props, estado) => {
     return props.borrables && props.seleccionables && 
     !algunaOperacionEnMarcha(estado).operacionEnMarcha && 
-    estado.usuarios.length !== estado.seleccionados.length
+    (estado.usuarios.length !== estado.seleccionados.length)
 } 
 export const mostrarDeseleccionarTodos = (props, estado) => {
     return props.borrables && props.seleccionables && 
@@ -30,6 +30,8 @@ export const mostrarBotonModificarUsuario = (props, estado, usuario) => {
     !algunaOperacionEnMarcha(estado).operacionEnMarcha ||
     estado.elementoEnModificacion === usuario )
 } 
+
+export const estaSeleccionadoElUsuario = (estado,id) => estado.seleccionados.includes(id)
 
 export const usuariosPrueba = [
     {
