@@ -48,11 +48,22 @@ class ListadoUsuariosState {
             this.seleccionados.splice(posicion, 1)
         return this
     }
+    borrarUsuario=(cual)=>{
+        var posicion = -1
+        this.usuarios.forEach( (datosUsuario, indice) => {if (datosUsuario.id === cual) posicion=indice})
+        if(posicion >=0 )
+            this.usuarios.splice(posicion, 1)
+        return this
+    }
     asignarUsuarios=(usuarios)=>{
         this.usuarios = usuarios;
         return this
     }
-
+    borrarUsuariosSelecionados=()=>{
+        this.seleccionados.forEach( id => this.borrarUsuario(id) )
+        this.seleccionados = []
+        return this
+    }
 }
 
 export default ListadoUsuariosState;

@@ -21,16 +21,18 @@ class ListadoUsuarios extends React.Component {
 
   componentDidMount(){
 
-    this.setState(this.state.asignarUsuarios(usuariosPrueba));
+    this.setState(this.state.asignarUsuarios(usuariosPrueba));  // TODO: Dependiendo del backend
   }
   confirmarBorradoTodos(){
     // Cierta lógica:
-    // this.state.asignarUsuarios([])
+    // Tengo que llamar al backend
+    this.setState(this.state.borrarUsuariosSelecionados()) // TODO: Dependiendo del backend
     this.setState(this.state.yaNoEnBorradoTodos())
   }
   confirmadoBorradoUsuario(id){
     // TODO: Habrá que quitarlo de la lista
-    this.setState(this.state.establecerElementoEnBorrado())
+    this.setState(this.state.borrarUsuario(id))
+    this.setState(this.state.establecerElementoEnBorrado()) // TODO: Dependiendo del backend
   }
   confirmadaModificacionUsuario(id, nuevosDatos){
     // Actualizar en la lista
@@ -51,8 +53,8 @@ class ListadoUsuarios extends React.Component {
         {
           this.state.usuarios.map( datosUsuario => 
             <Usuario 
-              key={datosUsuario.id} 
               id={datosUsuario.id} 
+              key={datosUsuario.id} 
               data={datosUsuario}
               seleccionado={estaSeleccionadoElUsuario(this.state, datosUsuario.id)}
               modoDeVisualizacion={this.props.modo}

@@ -52,7 +52,7 @@ class Usuario extends React.Component {
     }
 
     */
-    if(! this.state.data ){
+    if(! this.state.data ){  // TODO: Dependiendo del backend
       this.datosRecibidos({
         "nombre": "Ivan",
         "apellidos": "Osuna",
@@ -90,6 +90,7 @@ class Usuario extends React.Component {
     this.props.datosModificables.forEach( campo => nuevosDatos[campo]=this.campos[campo].current.value )
     this.setState( this.state.setData(nuevosDatos).setEstadoNormal() )         // Cambio mi estado
     this.notificarEvento(this.props.onModificado)  // Lanzo el evento
+     // TODO: Dependiendo del backend
   }
   cancelarBorrado(){
     this.setState( this.state.setEstadoNormal() )         // Cambio mi estado
@@ -153,7 +154,6 @@ class Usuario extends React.Component {
    )  
   }
   componentDidUpdate(valoresPreviosPropiedades){ // Se ejecuta cuando ha sido renderizado
-    //console.log(this.campos)
     if(this.state.estaEnEstadoModificacion() && this.recienLlegadoAModificado) {
       this.recienLlegadoAModificado = false
       this.campos[this.props.datosModificables[0]].current.focus()

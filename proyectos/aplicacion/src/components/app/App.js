@@ -12,6 +12,13 @@ function App() {
       modo={"EXTENSIBLE"}
       />
 
+      <ListadoUsuarios 
+      borrables={true}
+      modificables={true}
+      seleccionables={true}
+      modo={"EXTENSIBLE"}
+      />
+
 
       <hr/>
 
