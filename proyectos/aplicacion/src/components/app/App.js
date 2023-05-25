@@ -5,7 +5,12 @@ import ListadoUsuarios from '../listado-usuarios/ListadoUsuarios';
 function App() {
   return (
     <div>
-      <ListadoUsuarios />
+      <ListadoUsuarios 
+      borrables={true}
+      modificables={true}
+      seleccionables={true}
+      modo={"EXTENDIDO"}
+      />
 
 
       <hr/>

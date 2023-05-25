@@ -52,11 +52,13 @@ class Usuario extends React.Component {
     }
 
     */
-    this.datosRecibidos({
-      "nombre": "Ivan",
-      "apellidos": "Osuna",
-      "edad": 44
-    })
+    if(! this.state.data ){
+      this.datosRecibidos({
+        "nombre": "Ivan",
+        "apellidos": "Osuna",
+        "edad": 44
+      })
+    }
   }
   datosRecibidos(datosRecibidos){
       this.setState( this.state.setData(datosRecibidos) )
@@ -84,7 +86,7 @@ class Usuario extends React.Component {
     this.notificarEvento(this.props.onModificacionCancelada)         // Lanzo el evento
   }
   confirmarModificacion(){
-    var nuevosDatos = {... this.state.data }
+    var nuevosDatos = {...this.state.data }
     this.props.datosModificables.forEach( campo => nuevosDatos[campo]=this.campos[campo].current.value )
     this.setState( this.state.setData(nuevosDatos).setEstadoNormal() )         // Cambio mi estado
     this.notificarEvento(this.props.onModificado)  // Lanzo el evento
@@ -98,7 +100,7 @@ class Usuario extends React.Component {
     this.notificarEvento(this.props.onBorradoConfirmado)                    // Lanzo el evento
   }
   notificarEvento(funcionDeNotificacion){
-    funcionDeNotificacion && funcionDeNotificacion(this.props.id)
+    funcionDeNotificacion && funcionDeNotificacion(this.props.id, this.state.data)
   }
   alternarExtendido(){
     this.setState(this.state.alternarExtendido())

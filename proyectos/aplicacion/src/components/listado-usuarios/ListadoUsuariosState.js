@@ -14,35 +14,43 @@ class ListadoUsuariosState {
         this.elementoEnModificacion = undefined;
         return this
     }
-    establecerElementoEnModificacion(cual=undefined){
+    establecerElementoEnModificacion=(cual=undefined)=>{
         this.elementoEnModificacion = cual
         this.elementoEnBorrado = undefined;
+        return this
     }
-    borradoSolicitadoTodos(){
+    borradoSolicitadoTodos=()=>{
         this.enBorradoTodos = true;
         this.elementoEnModificacion = undefined;
         this.elementoEnBorrado = undefined;
+        return this
     }
-    yaNoEnBorradoTodos(){
+    yaNoEnBorradoTodos=()=>{
         this.enBorradoTodos = false;
+        return this
     }
-    seleccionarTodos(){
+    seleccionarTodos=()=>{
         this.seleccionados = this.usuarios.map( usuario => usuario.id )
+        return this
     }
-    deseleccionarTodos(){
+    deseleccionarTodos=()=>{
         this.seleccionados = []
+        return this
     }
-    seleccionar(cual){
+    seleccionar=(cual)=>{
         if ( !this.seleccionados.includes(cual) ) 
             this.seleccionados.push(cual)
+        return this
     }
-    deseleccionar(cual){
+    deseleccionar=(cual)=>{
         const posicion = this.seleccionados.indexOf(cual)
         if(posicion >=0 )
             this.seleccionados.splice(posicion, 1)
+        return this
     }
-    asignarUsuarios(usuarios){
+    asignarUsuarios=(usuarios)=>{
         this.usuarios = usuarios;
+        return this
     }
 
 }
