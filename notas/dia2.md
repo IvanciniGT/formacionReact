@@ -202,3 +202,51 @@ A
 B
 D
 C
+
+--
+
+
+# Cuando sacamos el botón SeleccionarTodos?
+
+- A no ser que todos estén seleccionados
+- Si estoy modificando uno?
+- Si estoy borrando uno?
+- Si estoy borrando todos?
+
+# Cuando sacamos el botón DeseleccionarTodos?
+
+- Cuando hay alguno seleccionado
+- Si estoy modificando uno?
+- Si estoy borrando uno?
+- Si estoy borrando todos?
+
+# Cancelar y CONFIRMAR
+
+- Cuando estoy en borrado de todos
+
+# Cuando saco borrar?
+
+- Cuando hay alguno seleccionado
+- Si estoy modificando uno?
+- Si estoy borrando uno?
+- Si estoy borrando todos?
+
+# Cuando le voy a sacar a un usuario el boton de borrar?
+
+- Cuando no este borrando todos
+- Cuando no haya ninguno en borrado... salvo éste
+- Cuando no haya ninguno en modificacion
+
+# Cuando le voy a sacar a un usuario el boton de modificar?
+
+- Cuando no este borrando todos
+- Cuando no haya ninguno en borrado
+- Cuando no haya ninguno en modificacion... salvo éste
+
+
+----
+Borrar
+
+Usuario 1   Borrar Modificar
+Usuario 2   Borrar Modificar
+Usuario 3   Borrar Modificar
