@@ -2,6 +2,8 @@ import './ComponenteA.css';
 
 import React from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { establecerTexto } from "../../store/actions/misActions";
 
 class ComponenteA extends React.Component{
 
@@ -31,4 +33,24 @@ ComponenteA.propTypes = {
   // Esta propiedad la quiero vincular con una función que al final del recorrido 
   // cambie el estado global en react
 }
-export default ComponenteA;
+
+// El componente A Está definido... y GUAY
+// Lo que vamos a hacer es conectar ese componente a REDUX
+
+// mapStateToProps
+// Datos que quiero que cuando cambien en REDUX, mi componente sea notificado
+// y se le inyecten como nuevos valores de properties
+const estado = (funcionDeEstablecimientoEnEstado) => ({})
+      // No hay datos que queramos MONITORIZAR del estado, ni recibir
+
+// mapDispatchToProps
+// Funciones de despacho de acciones para cambiar el estado y que quiero vincular como propiedades
+const acciones = (dispatch) => ({          // Queremos que al crear el componente se me inyecte desde REDUX 
+  funcionDeEstablecimientoEnEstado: (texto) => dispatch(establecerTexto(texto))
+                                                // Que se solicite al store de Redux, 
+                                                // que ejecute una acción, a través de los reducers.
+})
+
+const ComponenteAConectado = connect(  estado, acciones  )(ComponenteA)
+
+export default ComponenteAConectado

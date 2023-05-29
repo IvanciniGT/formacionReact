@@ -9,7 +9,7 @@ export const ACTIONS = {
 export function miReductor(state = estado_global_inicial, accion){
     switch(accion.type){
         case ACTIONS.ESTABLECER_EL_TEXTO:
-            return {... state, elTexto: accion.nuevoTexto}
+            return {...state, elTexto: accion.nuevoTexto}
         default:
             return state
     }
