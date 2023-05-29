@@ -3,6 +3,7 @@ import './ComponenteB.css';
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { reestablecerTexto } from "../../store/actions/misActions";
 
 class ComponenteB extends React.Component{
 
@@ -41,7 +42,9 @@ const estado = (estado_global_redux) => {
 
 // mapDispatchToProps
 // Funciones de despacho de acciones que quiero vincular como propiedades
-const acciones = () => ({})
+const acciones = (dispatch) => ({
+  funcionParaRestaurar: () => dispatch(reestablecerTexto())
+})
 
 const ComponenteBConectado = connect(  estado, acciones  )(ComponenteB)
 

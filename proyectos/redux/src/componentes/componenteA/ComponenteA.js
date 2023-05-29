@@ -10,6 +10,7 @@ class ComponenteA extends React.Component{
   constructor(props){
     super(props)
     this.campo= React.createRef();
+    this.state = {valorPorDefecto:this.props.valorPorDefecto}
   }
 
 
@@ -18,17 +19,28 @@ class ComponenteA extends React.Component{
   }
 
   render(){
+    //<input type="text" ref={this.campo} value={this.state.valorPorDefecto} onChange={()=> this.setState({valorPorDefecto:this.campo.current.value})}/>
+       
     return (
       <div>
         Texto: 
-        <input type="text" ref={this.campo}/>
+        
+        <input type="text" ref={this.campo} defaultValue={this.state.valorPorDefecto}/>
         <button onClick={()=>this.apretadoBoton()}>Establecer</button>
       </div>
     );
   }
+  componentDidUpdate(valoresPreviosPropiedades){ // Se ejecuta cuando ha sido renderizado
+    if(valoresPreviosPropiedades.valorPorDefecto !== this.props.valorPorDefecto){
+      this.setState({valorPorDefecto:this.props.valorPorDefecto})
+      this.campo.current.value = this.props.valorPorDefecto
+      //this.forceUpdate();
+    }
+  }
 
 }
 ComponenteA.propTypes = {
+  valorPorDefecto: PropTypes.string,
   funcionDeEstablecimientoEnEstado: PropTypes.func
   // Esta propiedad la quiero vincular con una función que al final del recorrido 
   // cambie el estado global en react
@@ -40,8 +52,12 @@ ComponenteA.propTypes = {
 // mapStateToProps
 // Datos que quiero que cuando cambien en REDUX, mi componente sea notificado
 // y se le inyecten como nuevos valores de properties
-const estado = (funcionDeEstablecimientoEnEstado) => ({})
-      // No hay datos que queramos MONITORIZAR del estado, ni recibir
+const estado = (estado_global_redux) => {
+  return {
+      // Props que quiero vincular a Valores del Estado global
+      valorPorDefecto: estado_global_redux.datos1.elTexto
+  }                                       // El reductor que guarda el dato (elTexto) tiene asignado el "Compartimento" datos1
+}       // No hay datos que queramos MONITORIZAR del estado, ni recibir
 
 // mapDispatchToProps
 // Funciones de despacho de acciones para cambiar el estado y que quiero vincular como propiedades

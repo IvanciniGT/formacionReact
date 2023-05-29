@@ -6,7 +6,7 @@ export function establecerTexto (elQueMeDen){
         nuevoTexto: elQueMeDen
     }
 }
-export function restablecerTexto (){
+export function reestablecerTexto (){
     return {
         type: ACTIONS.REESTABLECER_EL_TEXTO,
     }
