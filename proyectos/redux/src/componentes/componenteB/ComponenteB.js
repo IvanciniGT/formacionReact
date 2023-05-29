@@ -6,18 +6,24 @@ import { connect } from "react-redux";
 
 class ComponenteB extends React.Component{
 
+  restaurar(){
+    this.props.funcionParaRestaurar()
+  }
+
   render(){
     return (
       <div>
         Texto establecido: {this.props.textoAMostrar}
+        <button onClick={this.restaurar.bind(this)}> RESET </button>
       </div>
     );
   }
 
 }
 ComponenteB.propTypes = {
-    textoAMostrar: PropTypes.string
-    // Esta propiedad la asigno a un dato almacenado en el estado global
+  textoAMostrar: PropTypes.string,
+  funcionParaRestaurar: PropTypes.func
+  // Esta propiedad la asigno a un dato almacenado en el estado global
 }
 
 // El componente B Está definido... y GUAY
