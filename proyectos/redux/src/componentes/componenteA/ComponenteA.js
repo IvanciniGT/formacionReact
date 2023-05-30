@@ -10,7 +10,7 @@ class ComponenteA extends React.Component{
   constructor(props){
     super(props)
     this.campo= React.createRef();
-    this.state = {valorPorDefecto:this.props.valorPorDefecto}
+    //this.state = {valorPorDefecto:this.props.valorPorDefecto}
   }
 
 
@@ -25,16 +25,16 @@ class ComponenteA extends React.Component{
       <div>
         Texto: 
         
-        <input type="text" ref={this.campo} defaultValue={this.state.valorPorDefecto}/>
+        <input type="text" ref={this.campo} defaultValue={this.props.valorPorDefecto}/>
         <button onClick={()=>this.apretadoBoton()}>Establecer</button>
       </div>
     );
   }
   componentDidUpdate(valoresPreviosPropiedades){ // Se ejecuta cuando ha sido renderizado
     if(valoresPreviosPropiedades.valorPorDefecto !== this.props.valorPorDefecto){
-      this.setState({valorPorDefecto:this.props.valorPorDefecto})
-      this.campo.current.value = this.props.valorPorDefecto
-      //this.forceUpdate();
+      //this.setState({valorPorDefecto:this.props.valorPorDefecto})
+      //this.campo.current.value = this.props.valorPorDefecto
+      this.forceUpdate();
     }
   }
 
