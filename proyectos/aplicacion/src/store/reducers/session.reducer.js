@@ -16,3 +16,11 @@ export const sessionReducer = (state = sessionReducerInitialState, action) => {
             return state
     }
 }
+
+/*
+loggedUser: {
+    id:
+    firstName:
+    lastName:
+}
+*/

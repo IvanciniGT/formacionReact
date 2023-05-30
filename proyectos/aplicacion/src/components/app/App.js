@@ -1,10 +1,24 @@
 import './App.css';
 import Usuario from '../usuario/Usuario';
 import ListadoUsuarios from '../listado-usuarios/ListadoUsuarios';
+import UsuarioLogueado from '../usuario-logueado/UsuarioLogueado';
 
 function App() {
+  // Quiero montar la pantall de la app... que por defecto... no entiendo por que...
+  // A alguien se le ha ocurrido que al arrancar muestre:
+  // Boton ded login
+  // Boton de logout
+  // Input para ver el usuario conectado
+  // Un bloque para gestionar un expediente que se ha abierto por defecto
+  //  dentro de ese bloque tengo 2 listados de usuarios que sincronizar
   return (
+
+
     <div>
+
+      <UsuarioLogueado/>
+      <UsuarioLogueado/>
+
       <ListadoUsuarios 
       borrables={true}
       modificables={true}

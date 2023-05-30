@@ -71,14 +71,14 @@ Administración |     😃 Felipe       ❌
 
 ESTADO GLOBAL
 {
-   loggedUser: {
+   session: {
+    user: {
       id:
-      firstNname:
+      firstName:
       lastName:
-      email:
-      phone:
-      language:
-      theme: 
+    }, 
+    settings:{
+    }
    },
    gestionSolicitud: {
       listaConOperacionesEnProceso: 0 | 1 | 2 

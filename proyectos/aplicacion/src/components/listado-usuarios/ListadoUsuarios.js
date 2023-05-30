@@ -47,6 +47,7 @@ class ListadoUsuarios extends React.Component {
       </div>
     )
   }
+  
   renderUsuarios(){
     return this.state.usuarios?.length === 0 ? this.renderCargando() : (
       <ol>
@@ -97,13 +98,14 @@ ListadoUsuarios.propTypes = {
     borrables: PropTypes.bool.isRequired,
     modificables: PropTypes.bool.isRequired,
     seleccionables: PropTypes.bool.isRequired,
+    onOperacionEnMarcha: PropTypes.bool, 
     modo: PropTypes.string.isRequired
 }
 ListadoUsuarios.defaultProps={
   borrables: false,
   modificables: false,
   seleccionables: false,
-  modo: "COMPACTO"
+  modo: "COMPACTO",
 }
 
 export default ListadoUsuarios;
