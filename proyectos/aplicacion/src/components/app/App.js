@@ -3,8 +3,11 @@ import Usuario from '../usuario/Usuario';
 import ListadoUsuarios from '../listado-usuarios/ListadoUsuarios';
 import GestionExpedientes from '../gestion-expedientes/GestionExpedientes';
 import UsuarioLogueado from '../usuario-logueado/UsuarioLogueado';
-
+import ServicioUsuarios from '../../servicios/usuarios/ServicioUsuarios'
+import ContextoServicioUsuarios from './app.usuarios.context'
 function App() {
+  const servicio = new ServicioUsuarios()
+
   // Quiero montar la pantall de la app... que por defecto... no entiendo por que...
   // A alguien se le ha ocurrido que al arrancar muestre:
   // Boton ded login
@@ -14,7 +17,7 @@ function App() {
   //  dentro de ese bloque tengo 2 listados de usuarios que sincronizar
   return (
 
-
+    <ContextoServicioUsuarios.Provider value={servicio}>
     <div>
 
       <GestionExpedientes/>
@@ -23,6 +26,7 @@ function App() {
       <UsuarioLogueado/>
 
       <ListadoUsuarios 
+      funcionRecuperarUsuarios={ servicio.getUsuarios }
       borrables={true}
       modificables={true}
       seleccionables={true}
@@ -30,6 +34,7 @@ function App() {
       />
 
       <ListadoUsuarios 
+      funcionRecuperarUsuarios={ servicio.getUsuarios }
       borrables={true}
       modificables={true}
       seleccionables={true}
@@ -55,6 +60,7 @@ function App() {
                 onModificacionCancelada={(id)=>console.log("Parece que no", id)}/>
       
     </div>
+    </ContextoServicioUsuarios.Provider>
   );
 }
 

@@ -10,8 +10,9 @@ import {estaSeleccionadoElUsuario,
         mostrarDeseleccionarTodos,
         mostrarBorrar,
         mostrarBotonBorrarUsuario,
-        mostrarBotonModificarUsuario,
-        usuariosPrueba} from "./ListadoUsuariosUtilidades"
+        mostrarBotonModificarUsuario
+      } from "./ListadoUsuariosUtilidades"
+
 class ListadoUsuarios extends React.Component {
 
   constructor(props){
@@ -20,8 +21,19 @@ class ListadoUsuarios extends React.Component {
   }
 
   componentDidMount(){
-
-    this.setState(this.state.asignarUsuarios(usuariosPrueba));  // TODO: Dependiendo del backend
+    this.props.ServicioUsuarios.getUsuarios().then( (usuarios) =>  this.setState(this.state.asignarUsuarios(usuarios)))
+    // La inyección de dependencias me permite disfrutar de inversion de dependencias
+    // inversion de dependencias.
+    // Yo no quiero depender de implementaciones concretas de cosas... 
+    // me vale con conocer cómo hablar con esas cosas
+    
+    /*
+    console.log(this.props.funcionRecuperarUsuarios)
+    this.props.funcionRecuperarUsuarios().then( 
+      (usuarios)=> this.setState(this.state.asignarUsuarios(usuarios) 
+    ))
+    */
+    //this.setState(this.state.asignarUsuarios(usuariosPrueba));  // TODO: Dependiendo del backend
   }
   confirmarBorradoTodos(){
     // Cierta lógica:
@@ -130,6 +142,7 @@ class ListadoUsuarios extends React.Component {
   }
 }
 ListadoUsuarios.propTypes = {
+    funcionRecuperarUsuarios: PropTypes.func.isRequired,
     id: PropTypes.string,
     borrables: PropTypes.bool.isRequired,
     modificables: PropTypes.bool.isRequired,
