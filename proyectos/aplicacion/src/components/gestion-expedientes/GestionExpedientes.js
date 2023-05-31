@@ -27,7 +27,7 @@ class GestionExpedientesBase extends React.Component {
       <div>
         <div className="izquierda">
         <ListadoUsuarios borrables={! this.state.listadoEnUso || this.state.listadoEnUso === 'aprobadores' } modificables={false} seleccionables={true} id={"aprobadores"}
-          onOperacionEnMarcha={ this.operacionIniciadaEnUnaLista.bind(this)}
+          onOperacionEnMarcha={ this.props.operacionIniciadaEnUnaLista.bind(this)}
           onOperacionAcabada={ this.operacionFinalizadaEnUnaLista.bind(this)}
         ></ListadoUsuarios>
         </div>
