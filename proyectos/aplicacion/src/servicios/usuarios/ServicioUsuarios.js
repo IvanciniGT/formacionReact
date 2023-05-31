@@ -21,16 +21,27 @@ class ServicioUsuarios {
             "edad": 33
           }
         }
-        
+
     getUsuarios(){
 
     }
 
-    async getUsuario(id, callback = undefined){
+    getUsuario(id, callback = undefined){
         // Llamar a un backend asincronamente y ...
         // devolver una promesa que un futuro quizas contenga los datos del usuario ... o no ...
         // llamo al callback
         //if(callback) callback(datos)
+        const promesa = new Promise( (resolve, reject) => {
+            setTimeout(()=>{
+                const usuarioADevolver = usuarios[id]
+                resolve(usuarioADevolver)
+            }, 2000)
+        } )
+        if(callback){
+            promesa.then( (usuario) => callback(usuario) )
+        }else{
+            return promesa
+        }
     }
 
 }
