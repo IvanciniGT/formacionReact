@@ -1,0 +1,8 @@
+.izquierda{
+    float:left;
+    width: 50%;
+}
+.derecha{
+    float:right;
+    width: 50%;
+}

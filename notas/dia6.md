@@ -97,7 +97,7 @@ ME gustaría que:
 - Si estoy en medio de una operación de borrado en un listado, no quiero que en el otro tenga disponible la operación
 
 
--------------------------------------------------------------------------------------------
+---------------------------------Gestion Expediente----------------------------------------
 
 Aprobadores :                                   Revisores:
  [marcar todos] [borrar]                         [marcar todos] [borrar]

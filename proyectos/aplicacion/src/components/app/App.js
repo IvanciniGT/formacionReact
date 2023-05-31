@@ -1,6 +1,7 @@
 import './App.css';
 import Usuario from '../usuario/Usuario';
 import ListadoUsuarios from '../listado-usuarios/ListadoUsuarios';
+import GestionExpedientes from '../gestion-expedientes/GestionExpedientes';
 import UsuarioLogueado from '../usuario-logueado/UsuarioLogueado';
 
 function App() {
@@ -16,6 +17,8 @@ function App() {
 
     <div>
 
+      <GestionExpedientes/>
+      <hr/>
       <UsuarioLogueado/>
       <UsuarioLogueado/>
 

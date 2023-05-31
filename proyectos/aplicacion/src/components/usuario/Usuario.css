@@ -1,9 +1,15 @@
-usuario {
+.usuario {
+    background-color: #FFFFDD;
+    border: solid 1px black;
 
 }
-avatar {
+.usuario.seleccionado{
+    background-color: #DDDDFF;
+    border: solid 1px black;
+}
+.avatar {
 
 }
-botones {
+.botones {
 
 }
