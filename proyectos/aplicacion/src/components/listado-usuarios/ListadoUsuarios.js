@@ -12,6 +12,8 @@ import {estaSeleccionadoElUsuario,
         mostrarBotonBorrarUsuario,
         mostrarBotonModificarUsuario
       } from "./ListadoUsuariosUtilidades"
+import ContextoServicioUsuarios from '../app/app.usuarios.context';
+
 
 class ListadoUsuarios extends React.Component {
 
@@ -21,7 +23,7 @@ class ListadoUsuarios extends React.Component {
   }
 
   componentDidMount(){
-    this.props.ServicioUsuarios.getUsuarios().then( (usuarios) =>  this.setState(this.state.asignarUsuarios(usuarios)))
+    this.context.getUsuarios().then( (usuarios) =>  this.setState(this.state.asignarUsuarios(usuarios)))
     // La inyección de dependencias me permite disfrutar de inversion de dependencias
     // inversion de dependencias.
     // Yo no quiero depender de implementaciones concretas de cosas... 
@@ -54,14 +56,6 @@ class ListadoUsuarios extends React.Component {
     this.props.onOperacionAcabada(this.props.id)
   } // ????
 
-  render(){
-    return (
-      <div>
-        {this.renderBotones()}
-        {this.renderUsuarios()}
-      </div>
-    )
-  }
   seleccionar(usuario){
     this.setState(this.state.seleccionar(usuario))
     this.props.onOperacionEnMarcha(this.props.id)
@@ -94,6 +88,16 @@ class ListadoUsuarios extends React.Component {
   borradoSolicitadoTodos(){
     this.setState(this.state.borradoSolicitadoTodos())
     this.props.onOperacionEnMarcha(this.props.id)
+  }
+
+
+  render(){
+    return (
+      <div>
+        {this.renderBotones()}
+        {this.renderUsuarios()}
+      </div>
+    )
   }
   renderUsuarios(){
     return this.state.usuarios?.length === 0 ? this.renderCargando() : (
@@ -142,7 +146,7 @@ class ListadoUsuarios extends React.Component {
   }
 }
 ListadoUsuarios.propTypes = {
-    funcionRecuperarUsuarios: PropTypes.func.isRequired,
+//    ServicioUsuarios: PropTypes.object.isRequired,
     id: PropTypes.string,
     borrables: PropTypes.bool.isRequired,
     modificables: PropTypes.bool.isRequired,
@@ -157,4 +161,5 @@ ListadoUsuarios.defaultProps={
   seleccionables: false,
   modo: "COMPACTO",
 }
+ListadoUsuarios.contextType=ContextoServicioUsuarios
 export default ListadoUsuarios;

@@ -16,17 +16,15 @@ function App() {
   // Un bloque para gestionar un expediente que se ha abierto por defecto
   //  dentro de ese bloque tengo 2 listados de usuarios que sincronizar
   return (
-
     <ContextoServicioUsuarios.Provider value={servicio}>
     <div>
 
-      <GestionExpedientes/>
+      <GestionExpedientes></GestionExpedientes>
       <hr/>
       <UsuarioLogueado/>
       <UsuarioLogueado/>
 
       <ListadoUsuarios 
-      funcionRecuperarUsuarios={ servicio.getUsuarios }
       borrables={true}
       modificables={true}
       seleccionables={true}
@@ -34,7 +32,6 @@ function App() {
       />
 
       <ListadoUsuarios 
-      funcionRecuperarUsuarios={ servicio.getUsuarios }
       borrables={true}
       modificables={true}
       seleccionables={true}

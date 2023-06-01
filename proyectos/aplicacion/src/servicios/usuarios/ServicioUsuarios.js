@@ -22,7 +22,7 @@ class ServicioUsuarios {
          }
        }
 
-   getUsuarios = (callback = undefined) =>{
+   getUsuarios = (callback = undefined) => {
        const promesa = new Promise( (resolve, reject) => {
            setTimeout(()=>{
                resolve(Object.keys(this.usuarios).map(id => this.usuarios[id] ))
