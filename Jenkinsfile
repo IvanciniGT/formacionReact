@@ -15,6 +15,14 @@ pipeline {
                     sonar-scanner --help
                     sonar-scanner -Dsonar.token=squ_be3fbeeab125fbcea3036312d290a29ade903a0e
                 '''
+                echo "Let's wait for sonar analysis"
+
+                timeout(time: 1, unit: 'HOURS') {
+                    // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
+                    // true = set pipeline to UNSTABLE, false = don't
+                    waitForQualityGate abortPipeline: true
+                }
+
             }
             agent {
                 docker {
