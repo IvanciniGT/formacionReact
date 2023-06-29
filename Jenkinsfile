@@ -17,11 +17,6 @@ pipeline {
                 '''
                 echo "Let's wait for sonar analysis"
 
-                timeout(time: 1, unit: 'HOURS') {
-                    // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
-                    // true = set pipeline to UNSTABLE, false = don't
-                    waitForQualityGate abortPipeline: true
-                }
 
             }
             agent {
@@ -34,6 +29,11 @@ pipeline {
             steps {
                 echo "Let's wait for sonar analysis"
                 // some more commands
+                timeout(time: 1, unit: 'HOURS') {
+                    // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
+                    // true = set pipeline to UNSTABLE, false = don't
+                    waitForQualityGate abortPipeline: true
+                }
             }
         }
     
