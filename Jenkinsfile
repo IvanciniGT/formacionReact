@@ -17,8 +17,16 @@ pipeline {
             steps {
                 echo 'Here we start to build the react project'
                 echo 'Here build the react project'
-                // npm run build
+                sh '''
+                    cd proyectos/aplicacion
+                    npm run build
+                '''
                 echo 'The build is completed'
+            }
+            agent {
+                docker {
+                    image "node:latest"
+                }
             }
         }
     
