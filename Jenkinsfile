@@ -4,10 +4,23 @@ pipeline {
     
     stages {
     
-        stage("Sonar") {
+        stage("Send 2 Sonar") {
             steps {
                 echo 'Here we will send the project to sonar'
                 // Some comands
+                sh '''
+                    cd proyectos/aplicacion
+                    sonar-scanner -Dsonar.token=squ_be3fbeeab125fbcea3036312d290a29ade903a0e
+                '''
+            }
+            agent {
+                docker {
+                    image "sonarsource/sonar-scanner-cli:latest"
+                }
+            }
+        }
+        stage("Wait 4 Sonar") {
+            steps {
                 echo "Let's wait for sonar analysis"
                 // some more commands
             }
@@ -23,6 +36,8 @@ pipeline {
                     npm run build
                 '''
                 echo 'The build is completed'
+                echo 'Archive the Build'
+                //archiveArtifacts artifacts: 'proyectos/aplicacion/build', followSymlinks: false
             }
             agent {
                 docker {
