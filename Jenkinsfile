@@ -10,6 +10,9 @@ pipeline {
                 // Some comands
                 sh '''
                     cd proyectos/aplicacion
+                    ls 
+                    cat sonar-project.properties
+                    sonar-scanner --help
                     sonar-scanner -Dsonar.token=squ_be3fbeeab125fbcea3036312d290a29ade903a0e
                 '''
             }
