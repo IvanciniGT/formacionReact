@@ -9,7 +9,7 @@ pipeline {
                 echo 'Here we will send the project to sonar'
                 // Some comands
                 sh '''
-                    cd proyectos/aplicacion
+                    #cd proyectos/aplicacion
                     ls 
                     cat sonar-project.properties
                     sonar-scanner --help
