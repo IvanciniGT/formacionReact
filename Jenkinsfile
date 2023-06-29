@@ -19,6 +19,7 @@ pipeline {
                 echo 'Here build the react project'
                 sh '''
                     cd proyectos/aplicacion
+                    npm install
                     npm run build
                 '''
                 echo 'The build is completed'
